@@ -1,0 +1,17 @@
+extends layout
+
+block content
+
+  table
+    tr
+      th Name
+      th location
+      th age
+      th pets
+    tr
+    - for content in data {
+      td content.name
+      td content.location
+      td content.age
+      td content.pets
+    -}  
