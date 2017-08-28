@@ -30,9 +30,12 @@ router.get('/edit/', function(req,res, next){
 
 // show user page
 router.get('/:id', function(req, res, next){
-  knex.raw(`SELECT * FROM users WHERE id = ${req.params.id}`)
+  knex.raw(`SELECT users.*, pets.id as pet_id, pets.pet_name, pets.species, 'pets.picURL' as pic FROM users JOIN pets ON users.id = pets.owner_id WHERE users.id = ${req.params.id}`)
   .then(function(data){
-    res.render('homepage', {data: data.rows})
+    knex.raw(`SELECT user_reviews.*, users.username FROM user_reviews JOIN users ON users.id = user_reviews.poster_id WHERE user_id = ${req.params.id}`)
+      .then(function(reviews) {
+        res.render('dashboard', {user_info: data.rows, reviews: reviews.rows})
+      })
   })
 })
 
