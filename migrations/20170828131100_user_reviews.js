@@ -5,7 +5,7 @@ exports.up = function(knex, Promise) {
     table.integer('user_id');
     table.string('review');
     table.integer('rating');
-    table.string('poster_id');
+    table.integer('poster_id');
 
   })
 };
