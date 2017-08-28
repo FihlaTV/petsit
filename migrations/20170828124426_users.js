@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
     table.string('location');
     table.string('bio');
     table.string('email');
-    table.integer('phone');
+    table.string('phone_number');
     table.string('house_info');
   })
 };
