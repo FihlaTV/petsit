@@ -9,8 +9,7 @@ exports.up = function(knex, Promise) {
     table.string('bio');
     table.string('temperament');
     table.string('notes');
-    table.string('picURL');
-
+    table.string('pic_url');
   })
 };
 
