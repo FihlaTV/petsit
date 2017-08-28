@@ -11,6 +11,7 @@ block content
       td= user_info[0].username
       td= user_info[0].location
   each pet in user_info
+    img(src=`${pet.pic_url}`)
     a(href=`/pets/${pet.pet_id}`)= pet.pet_name
     p= pet.species
     br
