@@ -14,12 +14,3 @@ exports.up = function(knex, Promise) {
 exports.down = function(knex, Promise) {
   return knex.schema.dropTable('requests');
 };
-Id
-Poster_id
-Pet_id
-Start_date
-Start_time
-End_date
-End_time
-Info
-accepted_user(default null)
