@@ -11,7 +11,7 @@ exports.seed = function(knex, Promise) {
         {pet_id: 4, review: 'devil', rating: 0, poster_id: 3},
         {pet_id: 5, review: 'best whale ever', rating: 5, poster_id: 6},
         {pet_id: 6, review: 'nice', rating: 4, poster_id: 1},
-        {pet_id: 7, review: 'not a fan', rating: 2, poster_id: 4},
+        {pet_id: 7, review: 'not a fan', rating: 2, poster_id: 4}
       ]);
     });
 };
