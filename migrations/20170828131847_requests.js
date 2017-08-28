@@ -5,9 +5,9 @@ exports.up = function(knex, Promise) {
     table.integer('poster_id');
     table.integer('pet_id');
     table.string('start_date');
-    table.string('end_date');;
+    table.string('end_date');
     table.string('notes');
-
+    table.integer('accepted_user_id');
   })
 };
 
