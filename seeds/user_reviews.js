@@ -5,12 +5,12 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('user_reviews').insert([
-        {id: 1, user_id: '3', review: 'service was ok. Could do better!', rating: 4, poster_id: 2},
-        {id: 2, user_id: '4', review: 'service was ok. Could do better!', rating: 2, poster_id: 2},
-        {id: 3, user_id: '1', review: 'service was amazing!', rating: 5, poster_id: 2},
-        {id: 4, user_id: '6', review: 'Ok but forgot to feed my cat, though.', rating: 3, poster_id: 2},
-        {id: 5, user_id: '2', review: 'Couldve gotten better service at a kill shelter', rating: 4, poster_id: 4},
-        {id: 6, user_id: '7', review: 'service was ok. I wish they played with my dog', rating: 5, poster_id: 1},
+        {id: 1, user_id: 3, owner_id: 2, review: 'service was ok. Could do better!', rating: 4, poster_id: 2},
+        {id: 2, user_id: 4, owner_id: 1, review: 'service was ok. Could do better!', rating: 2, poster_id: 2},
+        {id: 3, user_id: 1, owner_id: 3, review: 'service was amazing!', rating: 5, poster_id: 2},
+        {id: 4, user_id: 6, owner_id: 4, review: 'Ok but forgot to feed my cat, though.', rating: 3, poster_id: 2},
+        {id: 5, user_id: 2, owner_id: 5, review: 'Couldve gotten better service at a kill shelter', rating: 4, poster_id: 4},
+        {id: 6, user_id: 7, owner_id: 6, review: 'service was ok. I wish they played with my dog', rating: 5, poster_id: 1}
       ]);
     });
 };
