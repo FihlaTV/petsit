@@ -26,7 +26,7 @@ router.get('/:id', function(req, res, next){
   .then(function(data){
     knex.raw(`SELECT user_reviews.*, users.username FROM user_reviews JOIN users ON users.id = user_reviews.poster_id WHERE user_id = ${req.params.id}`)
       .then(function(reviews) {
-        res.render('dashboard', {user_info: data.rows, reviews: reviews.rows})
+        res.render('dashboard', {user_info: data.rows, reviews: reviews.rows, cookie: req.cookies.user_id})
       })
   })
 })

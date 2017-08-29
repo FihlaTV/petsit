@@ -20,3 +20,10 @@ block content
   each review in reviews
     p= review.username
     p= review.review
+  if cookie
+    form(method='POST' action='/user_reviews')
+      input(type='hidden' name='poster_id' value=`${cookie}`)
+      input(type='hidden' name='user_id' value=`${user_info[0].id}`)
+      textarea(cols="60" rows="7" name="review" placeholder="Add a review")
+      br
+      button(type='submit') Add comment
