@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 var pets = require('./routes/pets');
 var requests = require('./routes/requests')
 
+
+var pets = require('./routes/pets');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
