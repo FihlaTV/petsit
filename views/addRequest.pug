@@ -1,0 +1,18 @@
+extends layout
+
+block content
+
+  form(action="/requests" method="POST")
+    input(type="hidden" value=`${cookie}` name="poster")
+    select(name="pet")
+        option(disabled selected) Pets
+        each pet in petInfo
+          option(value=`${pet.id}`)= pet.pet_name
+    br
+
+    input(type="text" name="start" placeholder="Start Date")
+    br
+    input(type="text" name="end" placeholder="End Date")
+    br
+    textarea(cols="60" rows="7" name="notes" placeholder ="Notes")
+    button(type="submit") Submit!
