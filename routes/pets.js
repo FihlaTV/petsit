@@ -2,6 +2,21 @@ var express = require('express');
 var router = express.Router();
 var knex = require('../db/knex.js');
 
+router.get('/add', function(req, res, next) {
+  if(req.cookies.user_id){
+      res.render('petAdd', { cookie: req.cookies.user_id });
+  } else {
+    res.redirect('/')
+  }
+});
+
+router.post('/add', function(req, res, next){
+  knex.raw(`insert into pets values (default, ${req.body.user_id}, '${req.body.name}', '${req.body.species}', ${req.body.age}, '${req.body.bio}', '${req.body.temperament}', '${req.body.notes}', '${req.body.pic_url}') `)
+  .then(function(data){
+    res.redirect(`/users/${req.cookies.user_id}`)
+  })
+})
+
 
 /* GET home page. */
 router.get('/:id', function(req, res, next) {
@@ -29,11 +44,7 @@ router.post('/:id/edit', function(req, res, next) {
 
 
 
-router.get('/add', function(req, res, next) {
-  res.render('petAdd', { title: 'Express' });
 
-
-});
 
 
 router.get('/:id/delete', function(req, res, next) {
@@ -43,7 +54,7 @@ router.get('/:id/delete', function(req, res, next) {
 });
 
 
-// petEdit
+
 // petDelete
 // petAdd
 

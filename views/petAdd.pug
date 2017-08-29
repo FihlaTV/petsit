@@ -1,3 +1,22 @@
 extends layout
 
 block content
+  h1 Add A New Pet to Your Account
+  br
+  form(method='post' action='/pets/add')
+    input(type='hidden' name='user_id' value=`${cookie}`)
+    input(type='text' name='name' placeholder='Name')
+    br
+    input(type='text' name='temperament' placeholder='Temperament')
+    br
+    input(type='text' name='species' placeholder='Species')
+    br
+    input(type='text' name='pic_url' placeholder='Picture')
+    br
+    input(type='number' name='age' placeholder='Age')
+    br
+    input(type='text' name='bio' placeholder='Pet bio')
+    br
+    input(type='text' name='notes' placeholder='Notes')
+    br
+    button(type='submit') Submit
