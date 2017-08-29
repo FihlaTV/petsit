@@ -5,7 +5,7 @@ var bcrypt = require('bcrypt');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', {cookies: req.cookies.user_id});
+  res.redirect('/requests');
 });
 
 // create account

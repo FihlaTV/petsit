@@ -8,7 +8,8 @@ router.get('/', function(req, res, next) {
   knex.raw(`SELECT requests.*, users.username, pets.pet_name FROM requests JOIN users ON requests.poster_id = users.id JOIN pets ON pets.id = requests.pet_id;`)
     .then(function(requests) {
       res.render('requests', {
-        passinData: requests.rows
+        passinData: requests.rows,
+        cookies: req.cookies.user_id
       })
     })
 })

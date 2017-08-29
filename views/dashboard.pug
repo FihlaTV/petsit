@@ -7,12 +7,12 @@ block content
     tr
       th Name
       th location
-      th pets
     tr
       td= user_info[0].username
       td= user_info[0].location
   each pet in user_info
     img(src=`${pet.pic_url}`)
+    br
     a(href=`/pets/${pet.pet_id}`)= pet.pet_name
     p= pet.species
     br
@@ -20,10 +20,12 @@ block content
   each review in reviews
     p= review.username
     p= review.review
-  if cookie
+  if cookie && cookie != user_info[0].id
     form(method='POST' action='/user_reviews')
       input(type='hidden' name='poster_id' value=`${cookie}`)
       input(type='hidden' name='user_id' value=`${user_info[0].id}`)
+      input(type='number' name='rating' min='0' max='5' placeholder='Rating')
+      br
       textarea(cols="60" rows="7" name="review" placeholder="Add a review")
       br
-      button(type='submit') Add comment
+      button(type='submit') Add review

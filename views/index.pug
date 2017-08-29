@@ -1,11 +1,4 @@
 extends layout
 
 block content
-	if !cookies
-		form(method="POST" action="/login")
-			input(type="text" name="login")
-			input(type="password" name="password")
-			button(type="submit") Login!
-		a(href="/users/add") Create a New User
-	else
-		a(href='/logout') Logout
+	

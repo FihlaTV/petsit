@@ -12,6 +12,21 @@ block content
   h2 Notes:
   h4 #{pet.notes}
 
-  a(href=`/pets/${pet.id}/edit`) Edit
-  form(method='post' action=`/pets/${pet.id}/delete`)
-    button(type='submit') Delete Pet
+  if cookie == pet.user_id
+    a(href=`/pets/${pet.id}/edit`) Edit
+    form(method='post' action=`/pets/${pet.id}/delete`)
+      button(type='submit') Delete Pet
+  br
+  each review in reviews
+    p= review.username
+    p= review.review
+  br
+  if cookie && cookie != pet.user_id
+    form(method='POST' action='/pet_reviews')
+      input(type='hidden' name='poster_id' value=`${cookie}`)
+      input(type='hidden' name='pet_id' value=`${pet.id}`)
+      input(type='number' name='rating' min='0' max='5' placeholder='Rating')
+      br
+      textarea(cols="60" rows="7" name="review" placeholder="Add a review")
+      br
+      button(type='submit') Add review

@@ -1,13 +1,22 @@
 extends layout
 
 block content
+	if !cookies
+		form(method="POST" action="/login")
+			input(type="text" name="login")
+			input(type="password" name="password")
+			button(type="submit") Login!
+		a(href="/users/add") Create a New User
+	else
+		a(href='/logout') Logout
+	br
+	br
+	each request in passinData
+		a(href=`/requests/${request.id}`) View Request
+		p: a(href=`/users/${request.poster_id}/`)= request.username
+		p= request.pet_name
+		p= request.start_date
+		p= request.end_date
+		p= request.notes
 
-  each request in passinData
-    a(href=`/requests/${request.id}`) View Request
-    p: a(href=`/users/${request.poster_id}/`)= request.username
-    p= request.pet_name
-    p= request.start_date
-    p= request.end_date
-    p= request.notes
-
-  a(href="/requests/add") Add New Request
+	a(href="/requests/add") Add New Request

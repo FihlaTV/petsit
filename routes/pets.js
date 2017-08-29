@@ -24,9 +24,12 @@ router.post('/add', function(req, res, next){
 
 // show pet
 router.get('/:id', function(req, res, next) {
-  knex.raw(`select pets.id as id, pet_name, species,age, pets.bio as bio, temperament, pic_url, username, notes, location from pets join users on pets.owner_id = users.id WHERE pets.id = ${req.params.id}`)
+  knex.raw(`select pets.id as id, pets.owner_id as user_id, pet_name, species,age, pets.bio as bio, temperament, pic_url, username, notes, location from pets join users on pets.owner_id = users.id WHERE pets.id = ${req.params.id}`)
   .then(function(pets){
-    res.render('petShow', {pet: pets.rows[0]});
+    knex.raw(`SELECT pet_reviews.*, users.username FROM pet_reviews JOIN users ON users.id = pet_reviews.poster_id WHERE pet_id = ${req.params.id}`)
+      .then(function(reviews) {
+        res.render('petShow', {pet: pets.rows[0], cookie: req.cookies.user_id, reviews: reviews.rows});
+      })
   })
 });
 

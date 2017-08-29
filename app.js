@@ -10,6 +10,9 @@ var users = require('./routes/users');
 var requests = require('./routes/requests');
 var comments = require('./routes/comments');
 var pets = require('./routes/pets');
+var user_reviews = require('./routes/user_reviews');
+var pet_reviews = require('./routes/pet_reviews');
+
 
 var app = express();
 
@@ -30,6 +33,8 @@ app.use('/users', users);
 app.use('/pets', pets);
 app.use('/requests', requests);
 app.use('/comments', comments);
+app.use('/user_reviews', user_reviews);
+app.use('/pet_reviews', pet_reviews);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
