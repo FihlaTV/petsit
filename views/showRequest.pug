@@ -1,0 +1,18 @@
+extends layout
+
+block content
+
+  p= request.username
+  p= request.pet_name
+  p= request.notes
+  p= request.start_date
+  p= request.end_date
+  br
+
+  each comment in passinData
+    form(action="/requests/accept" method="POST")
+      input(type="hidden" value=`${comment.user_id}` name="accepted")
+      input(type="hidden" value=`${request.id}` name="request")
+      button(type="submit") Accept!
+    p= comment.username
+    p= comment.comment_body

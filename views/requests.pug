@@ -1,0 +1,11 @@
+extends layout
+
+block content
+
+  each request in passinData
+    a(href=`requests/${request.id}`) View Request
+    p= request.username
+    p= request.pet_name
+    p= request.start_date
+    p= request.end_date
+    p= request.notes
