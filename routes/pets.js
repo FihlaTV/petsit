@@ -1,11 +1,32 @@
 var express = require('express');
 var router = express.Router();
 var knex = require('../db/knex.js');
-var bcrypt = require('bcrypt');
+
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/:id', function(req, res, next) {
+  res.render('petShow', { title: 'Express' });
+
+
+});
+
+
+router.get('/:id/edi', function(req, res, next) {
+  res.render('petEdit', { title: 'Express' });
+
+
+});
+
+
+router.get('/add', function(req, res, next) {
+  res.render('petAdd', { title: 'Express' });
+
+
+});
+
+
+router.get('/:id/delete', function(req, res, next) {
+  res.redirect('/home');
 
 
 });
