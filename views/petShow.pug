@@ -1,6 +1,13 @@
 extends layout
 
 block content
-  h1 #{pets.pet_name}:
-  img(src=`${pets.picURL}`)
-  h3 Owned by #{pets.username}
+  h1 #{pets.pet_name}, Age #{pets.age}
+  h3 I am a #{pets.temperament} #{pets.species} owned by #{pets.username}
+  h3 #{pets.location}
+  img(src=`${pets.pic_url}`)
+  br
+  h2 Bio:
+  h4 #{pets.bio}
+  br
+  h2 Notes:
+  h4 #{pets.notes}
