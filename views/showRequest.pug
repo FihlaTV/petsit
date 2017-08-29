@@ -9,10 +9,16 @@ block content
   p= request.end_date
   br
 
-  each comment in passinData
-    form(action="/requests/accept" method="POST")
-      input(type="hidden" value=`${comment.user_id}` name="accepted")
-      input(type="hidden" value=`${request.id}` name="request")
-      button(type="submit") Accept!
-    p= comment.username
-    p= comment.comment_body
+  if request.accepted_user_id != null
+    each person in user
+      if person.id == request.accepted_user_id
+        p= person.username
+  else
+    each comment in passinData
+      if cookie == request.poster_id
+        form(action="/requests/accept" method="POST")
+          input(type="hidden" value=`${comment.user_id}` name="accepted")
+          input(type="hidden" value=`${request.id}` name="request")
+          button(type="submit") Accept!
+      p= comment.username
+      p= comment.comment_body

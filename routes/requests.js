@@ -17,7 +17,11 @@ router.get('/:id', function(req,res,next){
   .then(function(data){
     knex.raw(`SELECT request_comment.*, users.username FROM request_comment JOIN users ON users.id = request_comment.user_id WHERE request_comment.request_id = ${req.params.id}`)
     .then(function(comments){
-      res.render('showRequest', {request: data.rows[0], passinData: comments.rows})
+      knex.raw(`SELECT * FROM users`)
+      .then(function(users){
+
+      res.render('showRequest', {request: data.rows[0], passinData: comments.rows, cookie: req.cookies.user_id, user: users.rows})
+    })
     })
   })
 })
