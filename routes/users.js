@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 // create new user
-router.get('/new', function(req, res, next) {
+router.get('/add', function(req, res, next) {
   res.render('newUser')
 })
 

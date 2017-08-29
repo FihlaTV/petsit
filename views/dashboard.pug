@@ -16,6 +16,7 @@ block content
     a(href=`/pets/${pet.pet_id}`)= pet.pet_name
     p= pet.species
     br
+  a(href='pets/add') Add new pet
   each review in reviews
     p= review.username
     p= review.review
