@@ -5,16 +5,29 @@ var knex = require('../db/knex.js');
 
 /* GET home page. */
 router.get('/:id', function(req, res, next) {
-  knex.raw(`select pet_name, species,age, pets.bio as bio, temperament, pic_url, username, notes, location from pets join users on pets.owner_id = users.id WHERE pets.id = ${req.params.id}`)
+  knex.raw(`select pets.id as id, pet_name, species,age, pets.bio as bio, temperament, pic_url, username, notes, location from pets join users on pets.owner_id = users.id WHERE pets.id = ${req.params.id}`)
   .then(function(pets){
-    res.render('petShow', { pets: pets.rows[0] });
+    res.render('petShow', {pet: pets.rows[0]});
   })
 });
 
 
 router.get('/:id/edit', function(req, res, next) {
-  res.render('petEdit', { title: 'Express' });
+    knex.raw(`select * from pets WHERE pets.id = ${req.params.id}`)
+    .then(function(pets){
+      console.log('at get edit')
+      res.render('petEdit', {pet:pets.rows[0]})
+    })
 });
+
+router.post('/:id/edit', function(req, res, next) {
+    knex.raw(`update pets set name='${req.body.name}', temperament='${req.body.temperament}', bio = '${req.body.bio}', age= ${req.body.age}, notes = '${req.body.notes}', pic_url = '${req.body.pic_url}' WHERE pets.id = ${req.params.id}`)
+    .then(function(pet){
+      res.redirect('/:id')
+    })
+});
+
+
 
 
 router.get('/add', function(req, res, next) {
@@ -30,7 +43,7 @@ router.get('/:id/delete', function(req, res, next) {
 
 });
 
-// petShow
+
 // petEdit
 // petDelete
 // petAdd

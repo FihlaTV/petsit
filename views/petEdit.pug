@@ -1,3 +1,21 @@
 extends layout
 
 block content
+
+  h2 Edit #{pet.pet_name}
+  br
+
+  form(method='post' action='/pets/#{pet.id}'/edit)
+    input(type='text' name='name' placeholder='name')
+    br
+    input(type='text' name='temperament' placeholder='temperament')
+    br
+    input(type='text' name='pic_url' placeholder='pic url')
+    br
+    input(type='number' name='age' placeholder='age')
+    br
+    input(type='text' name='bio' placeholder='bio')
+    br
+    input(type='text' name='notes' placeholder='notes')
+    br
+    button(type='submit') submit
