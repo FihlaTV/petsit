@@ -13,3 +13,5 @@ block content
   h4 #{pet.notes}
 
   a(href=`/pets/${pet.id}/edit`) Edit
+  form(method='post' action=`/pets/${pet.id}/delete`)
+    button(type='submit') Delete Pet
