@@ -1,5 +1,6 @@
 $(document).ready(function() {
-  $("#add-comment").submit(function(e) {
+  $(".add-comment").submit(function(e) {
+    console.log("submitted")
     var user = $("#comment-user")
     var comment = $("#comment").val();
     console.log(comment);
