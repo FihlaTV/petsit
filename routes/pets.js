@@ -15,15 +15,14 @@ router.get('/:id', function(req, res, next) {
 router.get('/:id/edit', function(req, res, next) {
     knex.raw(`select * from pets WHERE pets.id = ${req.params.id}`)
     .then(function(pets){
-      console.log('at get edit')
-      res.render('petEdit', {pet:pets.rows[0]})
+      res.render('petEdit', { pet:pets.rows[0] })
     })
 });
 
 router.post('/:id/edit', function(req, res, next) {
-    knex.raw(`update pets set name='${req.body.name}', temperament='${req.body.temperament}', bio = '${req.body.bio}', age= ${req.body.age}, notes = '${req.body.notes}', pic_url = '${req.body.pic_url}' WHERE pets.id = ${req.params.id}`)
+    knex.raw(`update pets set pet_name='${req.body.name}', temperament='${req.body.temperament}', bio = '${req.body.bio}', age= ${req.body.age}, notes = '${req.body.notes}', pic_url = '${req.body.pic_url}' WHERE id = ${req.params.id}`)
     .then(function(pet){
-      res.redirect('/:id')
+      res.redirect(`/pets/${req.params.id}`)
     })
 });
 

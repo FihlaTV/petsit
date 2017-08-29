@@ -5,12 +5,12 @@ block content
   h2 Edit #{pet.pet_name}
   br
 
-  form(method='post' action='/pets/#{pet.id}'/edit)
+  form(method='post' action=`/pets/${pet.id}/edit`)
     input(type='text' name='name' placeholder='Name')
     br
     input(type='text' name='temperament' placeholder='Temperament')
     br
-    input(type='text' name='pic_url' placeholder='Your pet's picture')
+    input(type='text' name='pic_url' placeholder='Picture')
     br
     input(type='number' name='age' placeholder='Age')
     br
