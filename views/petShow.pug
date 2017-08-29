@@ -1,0 +1,6 @@
+extends layout
+
+block content
+  h1 #{pets.pet_name}:
+  img(src=`${pets.picURL}`)
+  h3 Owned by #{pets.username}
