@@ -23,6 +23,20 @@ block content
     form(method='POST' action='/user_reviews')
       input(type='hidden' name='poster_id' value=`${cookie}`)
       input(type='hidden' name='user_id' value=`${user.id}`)
+      -if #{starAve} == 5 {
+
+      } else if #{starAve} == 4 {
+
+      } else if #{starAve} == 3 {
+
+      } else if #{starAve} == 2 {
+
+      } else if #{starAve} == 1 {
+
+      } else {
+      
+      }
+
       input(type='number' name='rating' min='0' max='5' placeholder='Rating')
       p= starAve
       br
