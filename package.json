@@ -8,9 +8,11 @@
   "dependencies": {
     "bcrypt": "^1.0.3",
     "body-parser": "~1.17.1",
+    "bower": "^1.8.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "express": "~4.15.2",
+    "five-star-rating": "^0.2.2",
     "knex": "^0.13.0",
     "morgan": "~1.8.1",
     "pg": "^7.2.0",

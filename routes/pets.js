@@ -3,6 +3,12 @@ var router = express.Router();
 var knex = require('../db/knex.js');
 
 
+
+
+
+
+
+
 // add yo pet
 router.get('/add', function(req, res, next) {
   if(req.cookies.user_id){

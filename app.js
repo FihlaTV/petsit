@@ -12,7 +12,7 @@ var comments = require('./routes/comments');
 var pets = require('./routes/pets');
 var user_reviews = require('./routes/user_reviews');
 var pet_reviews = require('./routes/pet_reviews');
-
+var fiveStarRating = require("five-star-rating")
 
 var app = express();
 
@@ -27,6 +27,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'bower_components')));
+
 
 app.use('/', index);
 app.use('/users', users);
