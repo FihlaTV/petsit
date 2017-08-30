@@ -14,6 +14,7 @@ body {
 
 a {
   color: #00B7FF;
+  text-decoration: none;
 }
 
 img {
@@ -54,6 +55,10 @@ button:hover {
   padding-left: 15px;
 }
 
+
+
+
+/*REQUESTS PAGE*/
 .requests h1 {
   text-align: center;
   padding:20px 0;
@@ -179,4 +184,35 @@ button:hover {
   font-size: 0.9em;
   font-weight: 100;
 }
+
+
+
+
+
+/*SHOW PET PAGE*/
+.pet-page {
+  padding: 40px;
+}
+
+.pet-page .pet-header {
+ text-align: center;
+ margin-bottom: 50px
+}
+
+.pet-page .pet-header .line {
+ width: 50px;
+ height: 4px;
+ background: black;
+ margin: 15px auto;
+}
+
+.pet-page .pet-header p {
+  color: #95989A;
+}
+
+
+
+
+
+
 
