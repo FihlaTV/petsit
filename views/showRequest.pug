@@ -32,3 +32,8 @@ block content
           textarea(id="comment-field" cols="60" rows="7" name="comment" placeholder="Add a comment")
           br
           button(id= "comment-button" type='submit') Add comment
+
+
+    if cookie == request.poster_id
+      form(method="post" action="/requests/delete/" + `${request.poster_id}`)
+        button(type="submit") Delete Request
