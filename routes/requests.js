@@ -60,7 +60,25 @@ router.post('/accept', function(req, res, next) {
     })
 })
 
-// Submit New request
+
+
+router.get('/edit/:id', function(req, res, next) {
+  knex.raw(`select * from requests where id = ${req.params.id}`)
+  .then(function(request){
+    knex.raw(`SELECT * from pets WHERE pets.owner_id = ${req.cookies.user_id}`)
+    .then(function(pets){
+      console.log(request.row)
+      res.render('editRequests', {request: request.rows[0], petInfo: pets.rows})
+
+    })
+  })
+})
+
+
+
+router.post('/edit/:id', function(req, res, next) {
+  knex.raw(`UPDATE requests SET (default )`)
+})
 
 router.post('/', function(req,res,next){
   knex.raw(`INSERT INTO requests VALUES (default, ${req.body.poster}, ${req.body.pet}, '${req.body.start}', '${req.body.end}', '${req.body.notes}')`)

@@ -37,3 +37,5 @@ block content
     if cookie == request.poster_id
       form(method="post" action="/requests/delete/" + `${request.poster_id}`)
         button(type="submit") Delete Request
+      form(method="get" action="/requests/edit/" + `${request.id}`)
+        button(type="submit") Edit Request
