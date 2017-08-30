@@ -1,10 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Muli:300,400,700,800,900');
+
+
 * {
   padding:0;
   margin:0;
+  box-sizing: border-box;
 }
 
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family:'Muli';
     background-color:#F2F2F2;
 }
 
@@ -21,25 +25,40 @@ img {
   grid-template-columns: repeat(5, 1fr);
   grid-auto-rows: auto;
 }
+
 .header, .footer {
   grid-column: 1/6;
   grid-row: 1;
   height:75px;
   background-color: #E84C3D;
+  display:flex;
 }
 
-/*.footer {
-  position:absolute;
-  height: 75px;
-  width:100vw;
-  bottom:0;
-  background-color: #E84C3D;
-}*/
-/*
-.login {
-  grid-column: 3/4;
-  grid-row: 2;
-}*/
+.header .logo {
+  padding:10px;
+}
+
+.logo img {
+  width:130px;
+  padding-left: 15px;
+}
+
+.requests h1 {
+  text-align: center;
+  padding:20px 0;
+  font-weight: 900;
+  font-size:2.5em;
+}
+
+.requests .request {
+  /*display:flex;*/
+  width:100%;
+  min-height:275px;
+  background: lightblue;
+  margin:10px 0;
+  padding:30px;
+  position:relative;
+}
 
 .left-margin {
   grid-column: 1/2;
@@ -56,4 +75,38 @@ img {
   grid-row: auto;
   background-color:white;
   min-height:100vh;
+}
+
+.dog-info {
+  display:flex;
+  width:100%;
+}
+
+.dog-info .dog-picture {
+  width:150px;
+  background-color:pink;
+  height:150px;
+}
+
+.dog-info .dog-text {
+  width:85%;
+  padding: 0 20px;
+}
+
+.request .requester-info {
+  display:flex;
+}
+
+.request .requester-info .view-request {
+  padding-top: 30px;
+  padding-bottom: 20px;
+  width:50%;
+  text-align: right;
+}
+
+
+.request .requester-info .posted-by {
+  padding-top: 30px;
+  padding-bottom: 20px;
+  width:50%;
 }

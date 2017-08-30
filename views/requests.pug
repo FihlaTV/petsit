@@ -1,23 +1,36 @@
 extends layout
 
 block content
-		.login
-			if !cookies
-				form(method="POST" action="/login")
-					input(type="text" name="login")
-					input(type="password" name="password")
-					button(type="submit") Login!
-				a(href="/users/add") Create a New User
-			else
-				a(href='/logout') Logout
+	.login
+		if !cookies
+			form(method="POST" action="/login")
+				input(type="text" name="login")
+				input(type="password" name="password")
+				button(type="submit") Login!
+			a(href="/users/add") Create a New User
+		else
+			a(href='/logout') Logout
 
-		.post
-			each request in passinData
-				a(href=`/requests/${request.id}`) View Request
-				p: a(href=`/users/${request.poster_id}/`)= request.username
-				p= request.pet_name
-				p= request.start_date
-				p= request.end_date
-				p= request.notes
+	.requests
+		h1 Requests
+		each request in passinData
+			.request
+				.dog-info
+					.dog-picture
+					.dog-text
+						.dog-name-and-rating
+							p= request.pet_name
+							p 5
+						.request-body
+							p= request.notes
+							p= request.start_date
+							p= request.end_date
+				.requester-info
+					.posted-by
+						p: a(href=`/users/${request.poster_id}/`)= request.username
+					.view-request
+						a(href=`/requests/${request.id}`) View Request
 
-			a(href="/requests/add") Add New Request
+				hr
+
+		a(href="/requests/add") Add New Request
