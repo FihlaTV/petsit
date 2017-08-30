@@ -39,6 +39,7 @@ router.get('/:id', function(req, res, next) {
         .then(function(comments) {
           knex.raw(`SELECT * FROM users`)
             .then(function(users) {
+              console.log(data.rows[0])
               res.render('showRequest', {
                 request: data.rows[0],
                 passinData: comments.rows,
@@ -64,7 +65,14 @@ router.post('/accept', function(req, res, next) {
 router.post('/', function(req,res,next){
   knex.raw(`INSERT INTO requests VALUES (default, ${req.body.poster}, ${req.body.pet}, '${req.body.start}', '${req.body.end}', '${req.body.notes}')`)
   .then(function(data){
-  res.redirect('/requests')  
+  res.redirect('/requests')
+  })
+})
+
+router.post('/delete/:id', function(req,res,next) {
+  knex.raw(`DELETE FROM requests WHERE id = ${req.params.id}`)
+  .then(function(data){
+    res.redirect('/requests')
   })
 })
 
