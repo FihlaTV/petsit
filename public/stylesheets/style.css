@@ -20,6 +20,17 @@ img {
 	width: 200px;
 }
 
+button {
+  border-radius: 50px;
+  background: none;
+  border: none;
+}
+
+button:hover {
+  background: #E84C3D;
+  cursor: pointer;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -54,9 +65,8 @@ img {
   /*display:flex;*/
   width:100%;
   min-height:275px;
-  background: lightblue;
   margin:10px 0;
-  padding:30px;
+  padding:40px;
   position:relative;
 }
 
@@ -98,15 +108,75 @@ img {
 }
 
 .request .requester-info .view-request {
-  padding-top: 30px;
-  padding-bottom: 20px;
+  padding: 30px 0;
   width:50%;
   text-align: right;
 }
 
+.request .requester-info .posted-by {
+  color: #95989A;
+}
+
+.posted-by a {
+  text-decoration: none
+}
+
+.view-request button {
+  padding: 10px 20px;
+  border: 5px solid #E84C3D;
+}
+
+.view-request a {
+  text-decoration: none;
+  color: black;
+  font-weight: 800;
+  font-size: 1.1em;
+}
+
+.view-request button:hover a {
+  color: white;
+}
+
 
 .request .requester-info .posted-by {
-  padding-top: 30px;
-  padding-bottom: 20px;
+  padding: 30px 0;
   width:50%;
 }
+
+.dog-name-and-rating {
+  display: inline-block;
+  width: 100%;
+  margin-top: 0;
+}
+
+.dog-name-and-rating h2 {
+  width: 100%;
+  font-size: 2em;
+}
+
+.dog-name-and-rating span {
+  padding: 0 15px;
+  color: #B9B9B9;
+  font-weight: 100;
+  font-size: 1.2em;
+}
+
+.dog-name-and-rating img {
+  display: inline-block;
+  width: 150px;
+}
+
+.request-body p {
+  padding-top: 25px;
+  color: #95989A;
+}
+
+.request-body p.notes {
+  font-size: 1.2em;
+}
+
+.request-body p.dates {
+  font-size: 0.9em;
+  font-weight: 100;
+}
+

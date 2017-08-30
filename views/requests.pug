@@ -19,17 +19,21 @@ block content
 					.dog-picture
 					.dog-text
 						.dog-name-and-rating
-							p= request.pet_name
-							p 5
+							h2 #{request.pet_name} 
+								span |
+								|
+								img(src='/image/5-stars.png')
 						.request-body
-							p= request.notes
-							p= request.start_date
-							p= request.end_date
+							p.notes= request.notes
+							p.dates #{request.start_date} to #{request.end_date}
 				.requester-info
 					.posted-by
-						p: a(href=`/users/${request.poster_id}/`)= request.username
+						p Posted by &nbsp;
+							|
+							a(href=`/users/${request.poster_id}/`)= request.username
 					.view-request
-						a(href=`/requests/${request.id}`) View Request
+						button
+							a(href=`/requests/${request.id}`) View Request
 
 				hr
 
