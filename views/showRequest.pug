@@ -26,13 +26,9 @@ block content
           p= comment.comment_body
 
     if cookie
-      form#add-comment(method='POST' action='/comments')
-        input#comment-user(type='hidden' name='user_id' value=`${cookie}`)
-        input#comment-request(type='hidden' name='post_id' value=`${request.id}`)
-        textarea#comment(cols="60" rows="7" name="comment" placeholder="Add a comment")
-        br
-        button#comment-button(type='submit') Add comment
-
-
-
-    
+        form(id="comment-box" method='POST' action='/comments')
+          input(id="comment-user" type='hidden' name='user_id' value=`${cookie}`)
+          input(id="comment-request" type='hidden' name='post_id' value=`${request.id}`)
+          textarea(id="comment-field" cols="60" rows="7" name="comment" placeholder="Add a comment")
+          br
+          button(id= "comment-button" type='submit') Add comment
