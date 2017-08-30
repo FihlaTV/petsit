@@ -23,8 +23,8 @@ block content
 							p 5
 						.request-body
 							p= request.notes
-							p= request.start_date
-							p= request.end_date
+								p request.start_date
+								p request.end_date
 				.requester-info
 					.posted-by
 						p: a(href=`/users/${request.poster_id}/`)= request.username
