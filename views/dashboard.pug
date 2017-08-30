@@ -1,29 +1,28 @@
 extends layout
 
 block content
-  a(href='/users/edit') Edit my account
+  if cookie == user.id
+    a(href=`/users/${user.id}/edit`) Edit my account
 
-  table
-    tr
-      th Name
-      th location
-    tr
-      td= user_info[0].username
-      td= user_info[0].location
-  each pet in user_info
-    img(src=`${pet.pic_url}`)
-    br
-    a(href=`/pets/${pet.pet_id}`)= pet.pet_name
-    p= pet.species
-    br
+  h1= user.username
+  h3= user.location
+  if pets.length < 1
+    p No pets :(
+  else
+    each pet in pets
+      img(src=`${pet.pic_url}`)
+      br
+      a(href=`/pets/${pet.pet_id}`)= pet.pet_name
+      p= pet.species
+      br
   a(href='/pets/add') Add new pet
   each review in reviews
     p= review.username
     p= review.review
-  if cookie && cookie != user_info[0].id
+  if cookie && cookie != user.id
     form(method='POST' action='/user_reviews')
       input(type='hidden' name='poster_id' value=`${cookie}`)
-      input(type='hidden' name='user_id' value=`${user_info[0].id}`)
+      input(type='hidden' name='user_id' value=`${user.id}`)
       input(type='number' name='rating' min='0' max='5' placeholder='Rating')
       br
       textarea(cols="60" rows="7" name="review" placeholder="Add a review")
