@@ -22,11 +22,18 @@ router.get('/:id/edit', function(req,res, next){
 
 // show user page
 router.get('/:id', function(req, res, next){
+
   knex.raw(`SELECT users.*, pets.id as pet_id, pets.pet_name, pets.species, pets.pic_url FROM users JOIN pets ON users.id = pets.owner_id WHERE users.id = ${req.params.id}`)
   .then(function(data){
     knex.raw(`SELECT user_reviews.*, users.username FROM user_reviews JOIN users ON users.id = user_reviews.poster_id WHERE user_id = ${req.params.id}`)
       .then(function(reviews) {
-        res.render('dashboard', {user_info: data.rows, reviews: reviews.rows, cookie: req.cookies.user_id})
+        knex.raw(`select avg(rating) from user_reviews`)
+        .then(function(ave){
+          var aveCookies = Math.round(ave.rows[0].avg)
+          res.cookie('stars', Math.round(ave.rows[0].avg) )
+          res.render('dashboard', {user_info: data.rows, reviews: reviews.rows, cookie: req.cookies.user_id})
+
+        })
       })
   })
 })
