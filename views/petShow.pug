@@ -5,64 +5,68 @@ block content
     .pet-header
       h1= pet.pet_name
       div.line
-      p Owned by 
+      p Owned by &nbsp;
         |
         a(href=`/users/${pet.owner_id}`) #{pet.username}
-        | , #{pet.location} 
-    
-
-
-    if starAve == 5
-      img(src="/image/5-stars.png")
-    else if starAve == 4
-      img(src="/image/4-stars.png")
-    else if starAve == 3
-      img(src="/image/3-stars.png")
-    else if starAve == 2
-      img(src="/image/2-stars.png")
-    else if starAve == 1
-      img(src="/image/1-star.png")
-    else
-      img(src="/image/0-stars.png")
-    h3 I am a #{pet.temperament} #{pet.species} owned by #{pet.username}
-    h3 #{pet.location}
-    img(src=`${pet.pic_url}`)
-    br
-    h2 Bio:
-    h4 #{pet.bio}
-    br
-    h2 Notes:
-    h4 #{pet.notes}
-
+        | , #{pet.location}
+    .pet-info-container
+      .pet-image
+        img(src= `${pet.pic_url})`)
+      .pet-info
+        h1 #{pet.species}
+        h2 Bio:
+        p Age: #{pet.age}
+        p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id.
+        h2 Notes:
+        p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id.
     if cookie == pet.user_id
-      a(href=`/pets/${pet.id}/edit`) Edit
-      form(method='post' action=`/pets/${pet.id}/delete`)
-        button(type='submit') Delete Pet
+      .edit-button
+        button: a(href=`/pets/${pet.id}/edit`) Edit
+          |
+          form(method='post' action=`/pets/${pet.id}/delete`)
+            button(type='submit') Delete
+    hr
     br
-    each review in reviews
-      table
-       tr
-         th name
-         th data
-         th rating
-       br
-       tr
-         td= review.username
-         td= review.review
-         td
-           if review.rating == 5
-             img(src="/image/5-stars.png")
-           else if review.rating == 4
-             img(src="/image/4-stars.png")
-           else if review.rating == 3
-             img(src="/image/3-stars.png")
-           else if review.rating == 2
-             img(src="/image/2-stars.png")
-           else if review.rating == 1
-             img(src="/image/1-star.png")
-           else
-             img(src="/image/0-stars.png")
-    br
+    .review-container
+      h1 Reviews
+      .average-rating
+        h3 Avg. Rating:
+          |
+          span
+          |
+          if starAve == 5
+            img.star(src="/image/5-stars.png")
+          else if starAve == 4
+            img.star(src="/image/4-stars.png")
+          else if starAve == 3
+            img.star(src="/image/3-stars.png")
+          else if starAve == 2
+            img.star(src="/image/2-stars.png")
+          else if starAve == 1
+            img.star(src="/image/1-star.png")
+          else
+            img.star(src="/image/0-stars.png")
+      .review-text-container
+        each review in reviews
+          .review
+            h2= review.username
+              span |
+              |
+              if review.rating == 5
+                img.star(src="/image/5-stars.png")
+              else if review.rating == 4
+                img.star(src="/image/4-stars.png")
+              else if review.rating == 3
+                img.star(src="/image/3-stars.png")
+              else if review.rating == 2
+                img.star(src="/image/2-stars.png")
+              else if review.rating == 1
+                img.star(src="/image/1-star.png")
+              else
+                img.star(src="/image/0-stars.png")
+            p= review.review
+            hr
+
     if cookie && cookie != pet.user_id
       form(method='POST' action='/pet_reviews')
         input(type='hidden' name='poster_id' value=`${cookie}`)

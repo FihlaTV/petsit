@@ -17,10 +17,6 @@ a {
   text-decoration: none;
 }
 
-img {
-	width: 200px;
-}
-
 button {
   border-radius: 50px;
   background: none;
@@ -30,6 +26,7 @@ button {
 button:hover {
   background: #E84C3D;
   cursor: pointer;
+  color:white;
 }
 
 .grid {
@@ -190,6 +187,10 @@ button:hover {
 
 
 /*SHOW PET PAGE*/
+.star {
+  width:150px;
+}
+
 .pet-page {
   padding: 40px;
 }
@@ -210,9 +211,91 @@ button:hover {
   color: #95989A;
 }
 
+.pet-page .pet-header h1 {
+  font-size: 2.5em;
+  font-weight: 900;
+}
 
+.pet-info-container {
+  display:flex;
+  width:100%;
+}
 
+.pet-info-container .pet-image {
+  width:200px;
+  height:200px;
+  overflow:hidden;
+}
 
+.pet-image img {
+  width:100%;
+}
 
+.pet-info {
+  padding-left:20px;
+  width:60%;
+  height:calc(100% + 200px);
+}
 
+.pet-info h2 {
+  padding-top: 20px;
+}
 
+.pet-info p {
+  color: #95989A;
+}
+
+.edit-button {
+  text-align: right;
+}
+
+.edit-button button {
+  padding: 10px 20px;
+  border: 5px solid #E84C3D;
+  margin:10px;
+  font-weight:bold;
+}
+
+.edit-button a {
+  color:black;
+}
+
+.edit-button button:hover a {
+  color: white;
+}
+
+.pet-page hr {
+  margin:10px 0;
+}
+
+.review-container h1 {
+  font-size: 2.5em;
+  font-weight: 900;
+  float:left;
+}
+
+.review-container .average-rating {
+  float:right;
+}
+
+.review-container .average-rating span {
+  margin-top: -10px;
+  padding-right:25px;
+}
+
+.review-text-container {
+  padding-top: 100px;
+  padding-right:100px;
+}
+
+.review-text-container .review span {
+  padding: 0 15px;
+  color: #B9B9B9;
+  font-weight: 100;
+  font-size: 1.2em;
+}
+
+.review p {
+  color: #95989A;
+  padding:20px 10px;
+}
