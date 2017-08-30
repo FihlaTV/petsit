@@ -31,7 +31,6 @@ router.get('/:id', function(req, res, next){
           knex.raw(`select avg(rating) from user_reviews where user_id = ${req.params.id}`)
           .then(function(ave){
             res.cookie('stars', Math.round(ave.rows[0].avg) )
-            console.log(user.rows[0])
             res.render('dashboard', {user: user.rows[0], pets: pets.rows, reviews: reviews.rows, cookie: req.cookies.user_id, starAve: Math.round(ave.rows[0].avg)})
           })
         })

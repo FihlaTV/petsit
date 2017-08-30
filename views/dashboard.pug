@@ -17,25 +17,44 @@ block content
       br
   a(href='/pets/add') Add new pet
   each review in reviews
-    p= review.username
-    p= review.review
+   table
+    tr
+      th name
+      th data
+      th rating
+    tr
+      td= review.username
+      td= review.review
+      td
+        if review.rating == 5
+          img(src="/image/5-stars.png")
+        else if review.rating == 4
+          img(src="/image/4-stars.png")
+        else if review.rating == 3
+          img(src="/image/3-stars.png")
+        else if review.rating == 2
+          img(src="/image/2-stars.png")
+        else if review.rating == 1
+          img(src="/image/1-star.png")
+        else
+          img(src="/image/0-stars.png")
   if cookie && cookie != user.id
     form(method='POST' action='/user_reviews')
       input(type='hidden' name='poster_id' value=`${cookie}`)
       input(type='hidden' name='user_id' value=`${user.id}`)
-      -if #{starAve} == 5 {
+      if starAve == 5
+        img(src="/image/5-stars.png")
+      else if starAve == 4
+        img(src="/image/4-stars.png")
+      else if starAve == 3
+        img(src="/image/3-stars.png")
+      else if starAve == 2
+        img(src="/image/2-stars.png")
+      else if starAve == 1
+        img(src="/image/1-stars.png")
+      else
+        img(src="/image/0-stars.png")
 
-      } else if #{starAve} == 4 {
-
-      } else if #{starAve} == 3 {
-
-      } else if #{starAve} == 2 {
-
-      } else if #{starAve} == 1 {
-
-      } else {
-      
-      }
 
       input(type='number' name='rating' min='0' max='5' placeholder='Rating')
       p= starAve
