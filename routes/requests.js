@@ -57,6 +57,7 @@ router.post('/accept', function(req, res, next) {
   var requestId = req.body.request
   knex.raw(`UPDATE requests SET accepted_user_id = ${acceptedUser} WHERE id = ${requestId}`)
     .then(function(data) {
+      res.cookie('alertCookie', 'You Accepted A Request', {maxAge : 5999});
       res.redirect('/requests/' + requestId)
     })
 })
@@ -87,6 +88,7 @@ router.post('/edit/:id', function(req, res, next) {
 router.post('/', function(req, res, next) {
   knex.raw(`INSERT INTO requests VALUES (default, ${req.body.poster}, ${req.body.pet}, '${req.body.start}', '${req.body.end}', '${req.body.notes}')`)
     .then(function(data) {
+      res.cookie('alertCookie', 'You Added A New Request', {maxAge : 5999});
       res.redirect('/requests')
     })
 })
@@ -94,6 +96,7 @@ router.post('/', function(req, res, next) {
 router.post('/delete/:id', function(req, res, next) {
   knex.raw(`DELETE FROM requests WHERE id = ${req.params.id}`)
     .then(function(data) {
+      res.cookie('alertCookie', 'Request Deleted', {maxAge : 5999});
       res.redirect('/requests')
     })
 })
