@@ -1,64 +1,103 @@
 extends layout
 
 block content
-  if cookie == user.id
-    a(href=`/users/${user.id}/edit`) Edit my account
+  .user-page
+    if cookie == user.id
+      a(href=`/users/${user.id}/edit`) Edit my account
 
-  h1= user.username
-  h3= user.location
-  if pets.length < 1
-    p No pets :(
-  else
-    each pet in pets
-      img(src=`${pet.pic_url}`)
-      br
-      a(href=`/pets/${pet.pet_id}`)= pet.pet_name
-      p= pet.species
-      br
-  a(href='/pets/add') Add new pet
-  each review in reviews
-   table
-    tr
-      th name
-      th data
-      th rating
-    tr
-      td= review.username
-      td= review.review
-      td
-        if review.rating == 5
-          img(src="/image/5-stars.png")
-        else if review.rating == 4
-          img(src="/image/4-stars.png")
-        else if review.rating == 3
-          img(src="/image/3-stars.png")
-        else if review.rating == 2
-          img(src="/image/2-stars.png")
-        else if review.rating == 1
-          img(src="/image/1-star.png")
-        else
-          img(src="/image/0-stars.png")
-  if cookie && cookie != user.id
-    form(method='POST' action='/user_reviews')
-      input(type='hidden' name='poster_id' value=`${cookie}`)
-      input(type='hidden' name='user_id' value=`${user.id}`)
-      if starAve == 5
-        img(src="/image/5-stars.png")
-      else if starAve == 4
-        img(src="/image/4-stars.png")
-      else if starAve == 3
-        img(src="/image/3-stars.png")
-      else if starAve == 2
-        img(src="/image/2-stars.png")
-      else if starAve == 1
-        img(src="/image/1-star.png")
-      else
-        img(src="/image/0-stars.png")
+    .user-header
+      h1= user.username
+      div.line
+      p From #{user.location}
+    .user-info
+      h2 Bio:
+      p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id.
+      h2 House Info:
+      p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id.
+      h2 Contact Info:
+      p Email: #{user.email}
+      p Phone: #{user.phone_number}
+    .edit-button
+      button: a(href=`/users/${user.id}/edit`) Edit
+    hr
 
+    h1.users-pets #{user.username}'s Pets:
 
-      input(type='number' name='rating' min='0' max='5' placeholder='Rating')
-      p= starAve
-      br
-      textarea(cols="60" rows="7" name="review" placeholder="Add a review")
-      br
-      button(type='submit') Add review
+    if pets.length < 1
+      p No pets :(
+    else
+      each pet in pets
+        .pet
+          .dog-info
+            .dog-picture
+              img(src=`${pet.pic_url}`)
+            .dog-text
+              .dog-name-and-rating
+                h2 #{pet.pet_name}
+                  span |
+                  |
+                  img(src='/image/5-stars.png')
+              .pet-body
+                p= pet.species
+                p Age: #{pet.age}
+                p.pet-bio Bio: #{pet.bio}
+          .view-pet
+            button
+              a(href=`/pets/${pet.id}`) View Pet
+
+          hr
+    if cookie && cookie == user.id
+      .add-pet
+        button: a(href='/pets/add') Add new pet
+    br
+    .review-container
+      h1 Reviews
+      .average-rating
+        h3 Avg. Rating:
+          |
+          span
+          |
+          if starAve == 5
+            img.star(src="/image/5-stars.png")
+          else if starAve == 4
+            img.star(src="/image/4-stars.png")
+          else if starAve == 3
+            img.star(src="/image/3-stars.png")
+          else if starAve == 2
+            img.star(src="/image/2-stars.png")
+          else if starAve == 1
+            img.star(src="/image/1-star.png")
+          else
+            img.star(src="/image/0-stars.png")
+      .review-text-container
+        each review in reviews
+          .review
+            h2= review.username
+              span |
+              |
+              if review.rating == 5
+                img.star(src="/image/5-stars.png")
+              else if review.rating == 4
+                img.star(src="/image/4-stars.png")
+              else if review.rating == 3
+                img.star(src="/image/3-stars.png")
+              else if review.rating == 2
+                img.star(src="/image/2-stars.png")
+              else if review.rating == 1
+                img.star(src="/image/1-star.png")
+              else
+                img.star(src="/image/0-stars.png")
+            p= review.review
+            hr
+    .leave-a-review
+      if cookie && cookie != user.id
+        h1 Leave a Review
+        form(method='POST' action='/user_reviews')
+          input(type='hidden' name='poster_id' value=`${cookie}`)
+          input(type='hidden' name='user_id' value=`${user.id}`)
+          h2 Rating:
+            |
+            input(type='number' name='rating' min='0' max='5')
+          textarea(cols="60" rows="7" name="review" placeholder="Add a Review")
+          br
+          button.add-review(type='submit') Add Review

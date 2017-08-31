@@ -66,13 +66,15 @@ block content
                 img.star(src="/image/0-stars.png")
             p= review.review
             hr
-
-    if cookie && cookie != pet.user_id
-      form(method='POST' action='/pet_reviews')
-        input(type='hidden' name='poster_id' value=`${cookie}`)
-        input(type='hidden' name='pet_id' value=`${pet.id}`)
-        input(type='number' name='rating' min='0' max='5' placeholder='Rating')
-        br
-        textarea(cols="60" rows="7" name="review" placeholder="Add a review")
-        br
-        button(type='submit') Add review
+    .leave-a-review
+      if cookie && cookie != pet.user_id
+        h1 Leave a Review
+        form(method='POST' action='/pet_reviews')
+          input(type='hidden' name='poster_id' value=`${cookie}`)
+          input(type='hidden' name='pet_id' value=`${pet.id}`)
+          h2 Rating:
+            |
+            input(type='number' name='rating' min='0' max='5')
+          textarea(cols="60" rows="7" name="review" placeholder="Add a review")
+          br
+          button(type='submit') Add review
