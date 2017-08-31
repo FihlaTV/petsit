@@ -1,20 +1,28 @@
 extends layout
 
 block content
-
-  form(action="/users/add" method="POST")
-    input(type="text" name="username" placeholder="User Name")
-    br
-    input(type="text" name="location" placeholder="location")
-    br
-    textarea(cols="60" rows="7" name="bio" placeholder="Biography")
-    br
-    input(type="text" name="email" placeholder="email")
-    br
-    input(type="text" name="phone" placeholder="Phone Number")
-    br
-    textarea(cols="60" rows="7" name="info" placeholder ="house Information")
-    br
-    input(type="password" name="password" placeholder="Password")
-    input(type="password" name="verify" placeholder="Verify Password")
-    button(type="submit") Submit New User
+  .add-user
+    center
+      h1 Create New User
+    form(action="/users/add" method="POST")
+      .edit-new-form
+        .left-form
+          p Username:
+          input(type="text" name="username")
+          p Email:
+          input(type="text" name="email")
+          p Location:
+          input(type="text" name="location")
+          p Phone Number:
+          input(type="text" name="phone")
+          p Password:
+          input(type="password" name="password")
+          p Confirm Password:
+          input(type="password" name="verify")
+        .right-form
+          p Biography:
+          textarea(cols="60" rows="7" name="bio")
+          p House Information:
+          textarea(cols="60" rows="7" name="info")
+      .submit-edit
+        button(type="submit") Submit New User

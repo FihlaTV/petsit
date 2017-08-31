@@ -6,11 +6,11 @@ block content
 		h1 Requests
 		each request in passinData
 			.request
+				if request.accepted_user_id !== null
+					.checkmark
+						i.fa.fa-check#check-mark
 				.dog-info
 					img(src=`${request.pic_url}`).dog-picture
-					if request.accepted_user_id !== null
-						.fa.fa-check
-
 					.dog-text
 						.dog-name-and-rating
 							h2 #{request.pet_name}
@@ -42,4 +42,5 @@ block content
 
 				hr
 
-		a(href="/requests/add") Add New Request
+		.add-request
+			button: a(href="/requests/add") Add New Request

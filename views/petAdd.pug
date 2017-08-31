@@ -1,22 +1,28 @@
 extends layout
 
 block content
-  h1 Add A New Pet to Your Account
-  br
-  form(method='post' action='/pets/add')
-    input(type='hidden' name='user_id' value=`${cookie}`)
-    input(type='text' name='name' placeholder='Name')
-    br
-    input(type='text' name='temperament' placeholder='Temperament')
-    br
-    input(type='text' name='species' placeholder='Species')
-    br
-    input(type='text' name='pic_url' placeholder='Picture')
-    br
-    input(type='number' name='age' placeholder='Age')
-    br
-    input(type='text' name='bio' placeholder='Pet bio')
-    br
-    input(type='text' name='notes' placeholder='Notes')
-    br
-    button(type='submit') Submit
+  .add-a-pet
+    center
+      h1 Add a Pet
+    form(method='post' action='/pets/add')
+      .edit-new-form
+        .left-form
+          input(type='hidden' name='user_id' value=`${cookie}`)
+          p Name:
+          input(type='text' name='name')
+          p Temperament:
+          input(type='text' name='temperament')
+          p Species:
+          input(type='text' name='species')
+          p Picture URL:
+          input(type='text' name='pic_url')
+          p Age:
+          input(type='number' name='age')
+        .right-form
+          p Biography:
+          textarea(cols="60" rows="7" name='bio')
+          p Notes:
+          textarea(cols="60" rows="7" name='notes')
+          br
+      .submit-edit
+        button(type='submit') Submit
