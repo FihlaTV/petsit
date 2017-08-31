@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
 knex.raw(`SELECT requests.*, users.username, pets.pet_name, pet_reviews.rating, pets.pic_url FROM requests JOIN users ON requests.poster_id = users.id JOIN pets ON pets.id = requests.pet_id JOIN pet_reviews ON pet_reviews.id = pets.id;`)
   .then(function(requests) {
     res.render('requests', {
+      username: req.cookies.username,
       passinData: requests.rows,
       cookies: req.cookies.user_id,
     })
@@ -21,7 +22,7 @@ router.get('/add', function(req, res, next) {
       .then(function(pets) {
         res.render('addRequest', {
           cookie: req.cookies.user_id,
-          petInfo: pets.rows
+          petInfo: pets.rows, username: req.cookies.username
         })
       })
   } else {
@@ -44,7 +45,7 @@ router.get('/:id', function(req, res, next) {
                 request: data.rows[0],
                 passinData: comments.rows,
                 cookie: req.cookies.user_id,
-                user: users.rows
+                user: users.rows, username: req.cookies.username
               })
             })
         })
@@ -70,7 +71,7 @@ router.get('/edit/:id', function(req, res, next) {
           console.log(request.row)
           res.render('editRequests', {
             request: request.rows[0],
-            petInfo: pets.rows
+            petInfo: pets.rows, username: req.cookies.username
           })
 
         })
