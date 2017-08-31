@@ -1,10 +1,8 @@
 extends layout
-
 block content
   .user-page
     if cookie == user.id
       a(href=`/users/${user.id}/edit`) Edit my account
-
     .user-header
       h1= user.username
       div.line
@@ -20,9 +18,7 @@ block content
     .edit-button
       button: a(href=`/users/${user.id}/edit`) Edit
     hr
-
     h1.users-pets #{user.username}'s Pets:
-
     if pets.length < 1
       p No pets :(
     else
@@ -44,7 +40,6 @@ block content
           .view-pet
             button
               a(href=`/pets/${pet.id}`) View Pet
-
           hr
     if cookie && cookie == user.id
       .add-pet

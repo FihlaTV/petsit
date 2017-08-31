@@ -15,7 +15,7 @@ router.get('/add', function(req, res, next) {
 router.post('/add', function(req, res, next){
   knex.raw(`insert into pets values (default, ${req.body.user_id}, '${req.body.name}', '${req.body.species}', ${req.body.age}, '${req.body.bio}', '${req.body.temperament}', '${req.body.notes}', '${req.body.pic_url}') `)
   .then(function(data){
-    res.cookie('alertCookie', 'Pet was added', {maxAge : 6999});
+    res.cookie('alertCookie', 'Your pet was added', {maxAge : 5999});
     res.redirect(`/users/${req.cookies.user_id}`)
   })
 })
@@ -53,7 +53,7 @@ router.get('/:id/edit', function(req, res, next) {
 router.post('/:id/edit', function(req, res, next) {
     knex.raw(`update pets set pet_name='${req.body.name}', temperament='${req.body.temperament}', bio = '${req.body.bio}', age= ${req.body.age}, notes = '${req.body.notes}', pic_url = '${req.body.pic_url}' WHERE id = ${req.params.id}`)
     .then(function(pet){
-      res.cookie('alertCookie', 'Pet was edited', {maxAge : 6999});
+      res.cookie('alertCookie', 'Your pet was edited', {maxAge : 5999});
       res.redirect(`/pets/${req.params.id}`)
     })
 });
@@ -67,7 +67,7 @@ router.post('/:id/edit', function(req, res, next) {
 router.post('/:id/delete', function(req, res, next) {
   knex.raw(`delete from pets where id = ${req.params.id}`)
   .then(function(data){
-    res.cookie('alertCookie', 'Pet was deleted', {maxAge : 6999});
+    res.cookie('alertCookie', 'Your pet was deleted', {maxAge : 5999});
     res.redirect(`/users/${req.cookies.user_id}`)
   })
 });
