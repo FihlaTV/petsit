@@ -7,6 +7,7 @@ block content
     form(action="/requests" method="POST")
       .add-a-request-form
         input(type="hidden" value=`${cookie}` name="poster")
+        p Add Pet:
         .select
           select(name="pet")
               option(disabled selected) Pets
