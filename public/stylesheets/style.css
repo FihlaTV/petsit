@@ -605,7 +605,25 @@ button.add-review {
 .show-request .request-posted-by .view-poster-pet button {
   padding: 10px 20px;
   border: 5px solid #E84C3D;
-  margin:15px 30px;
+  margin:15px 10px;
+}
+
+.show-request .request-posted-by button.delete-request {
+  padding: 10px 20px;
+  border: 5px solid #E84C3D;
+  margin:15px 10px;
+  font-weight:800;
+}
+
+.show-request .request-posted-by button.delete-request:hover {
+  color:white;
+}
+
+.show-request .request-posted-by button.edit-request {
+  padding: 10px 20px;
+  border: 5px solid #E84C3D;
+  margin:15px 10px;
+  font-weight:800;
 }
 
 .show-request .request-posted-by .view-poster-pet button a {
@@ -615,6 +633,22 @@ button.add-review {
 
 .show-request .request-posted-by .view-poster-pet button:hover a {
   color:white;
+}
+
+hr.before-offers {
+  margin:20px 0;
+}
+
+.review-text-container .accept-offer {
+  width: 100%;
+  text-align:right;
+}
+
+button.accept-button {
+  padding: 10px 20px;
+  border: 5px solid #E84C3D;
+  margin:-10px 10px 15px 10px;
+  font-weight:800;
 }
 
 .elementToFadeInAndOut {

@@ -23,33 +23,42 @@ block content
       .view-poster-pet
         button: a(href=`/pets/${request.pet_id}`) View Pet
 
+      if cookie == request.poster_id
+        form(method="post" action="/requests/delete/" + `${request.poster_id}`)
+          button.delete-request(type="submit") Delete
+        form(method="get" action="/requests/edit/" + `${request.id}`)
+          button.edit-request(type="submit") Edit
+    hr.before-offers
+
     if request.accepted_user_id != null
       each person in user
         if person.id == request.accepted_user_id
-          p= person.username
+          center
+            h3 #{request.username} accepted #{person.username}'s offer.
     else
-      .comment-container
-        each comment in passinData
-          .comment
-            if cookie == request.poster_id
-              form(action="/requests/accept" method="POST")
-                input(type="hidden" value=`${comment.user_id}` name="accepted")
-                input(type="hidden" value=`${request.id}` name="request")
-                button(type="submit") Accept!
-            p= comment.username
-            p= comment.comment_body
-
-      if cookie
-          form(id="comment-box" method='POST' action='/comments')
-            input(id="comment-user" type='hidden' name='user_id' value=`${cookie}`)
-            input(id="comment-request" type='hidden' name='post_id' value=`${request.id}`)
-            textarea(id="comment-field" cols="60" rows="7" name="comment" placeholder="Add a comment")
-            br
-            button(id= "comment-button" type='submit') Add comment
-
-
-      if cookie == request.poster_id
-        form(method="post" action="/requests/delete/" + `${request.poster_id}`)
-          button(type="submit") Delete Request
-        form(method="get" action="/requests/edit/" + `${request.id}`)
-          button(type="submit") Edit Request
+      .review-container
+        h1 Offers:
+        .review-text-container
+          each comment in passinData
+            .review
+              h2= comment.username
+                span |
+                |
+                img.star(src="/image/5-stars.png")
+              p= comment.comment_body
+            .accept-offer
+              if cookie == request.poster_id
+                form(action="/requests/accept" method="POST")
+                  input(type="hidden" value=`${comment.user_id}` name="accepted")
+                  input(type="hidden" value=`${request.id}` name="request")
+                  button.accept-button(type="submit") Accept!
+              hr
+          .leave-a-review
+            if cookie && cookie != request.poster_id
+              h1 Offer to petsit:
+              form(method='POST' action='/comments')
+                input(id="comment-user" type='hidden' name='user_id' value=`${cookie}`)
+                input(id="comment-request" type='hidden' name='post_id' value=`${request.id}`)
+                textarea(id="comment-field" cols="60" rows="7" name="comment" placeholder="Add a comment")
+                br
+                button(id= "comment-button" type='submit') Add comment
