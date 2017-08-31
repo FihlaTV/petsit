@@ -12,7 +12,7 @@ block content
     each pet in pets
       img(src=`${pet.pic_url}`)
       br
-      a(href=`/pets/${pet.pet_id}`)= pet.pet_name
+      a(href=`/pets/${pet.id}`)= pet.pet_name
       p= pet.species
       br
   a(href='/pets/add') Add new pet
