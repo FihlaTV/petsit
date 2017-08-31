@@ -8,6 +8,9 @@ block content
 			.request
 				.dog-info
 					img(src=`${request.pic_url}`).dog-picture
+					if request.accepted_user_id !== null
+						.fa.fa-check
+
 					.dog-text
 						.dog-name-and-rating
 							h2 #{request.pet_name}
