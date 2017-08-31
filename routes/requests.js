@@ -5,14 +5,13 @@ var bcrypt = require('bcrypt');
 
 // Get all request
 router.get('/', function(req, res, next) {
-  knex.raw(`SELECT requests.*, users.username, pets.pet_name FROM requests JOIN users ON requests.poster_id = users.id JOIN pets ON pets.id = requests.pet_id;`)
-    .then(function(requests) {
-      res.render('requests', {
-        username: req.cookies.username,
-        passinData: requests.rows,
-        cookies: req.cookies.user_id
-      })
+knex.raw(`SELECT requests.*, users.username, pets.pet_name, pet_reviews.rating, pets.pic_url FROM requests JOIN users ON requests.poster_id = users.id JOIN pets ON pets.id = requests.pet_id JOIN pet_reviews ON pet_reviews.id = pets.id;`)
+  .then(function(requests) {
+    res.render('requests', {
+      passinData: requests.rows,
+      cookies: req.cookies.user_id,
     })
+  })
 })
 
 // Add new Request Page
@@ -21,7 +20,6 @@ router.get('/add', function(req, res, next) {
     knex.raw(`SELECT * from pets WHERE pets.owner_id = ${req.cookies.user_id}`)
       .then(function(pets) {
         res.render('addRequest', {
-          username: req.cookies.username,
           cookie: req.cookies.user_id,
           petInfo: pets.rows
         })
@@ -44,7 +42,6 @@ router.get('/:id', function(req, res, next) {
               console.log(data.rows[0])
               res.render('showRequest', {
                 request: data.rows[0],
-                username: req.cookies.username,
                 passinData: comments.rows,
                 cookie: req.cookies.user_id,
                 user: users.rows
@@ -67,14 +64,17 @@ router.post('/accept', function(req, res, next) {
 
 router.get('/edit/:id', function(req, res, next) {
   knex.raw(`select * from requests where id = ${req.params.id}`)
-  .then(function(request){
-    knex.raw(`SELECT * from pets WHERE pets.owner_id = ${req.cookies.user_id}`)
-    .then(function(pets){
-      console.log(request.row)
-      res.render('editRequests', {request: request.rows[0], petInfo: pets.rows, username: req.cookies.username,})
+    .then(function(request) {
+      knex.raw(`SELECT * from pets WHERE pets.owner_id = ${req.cookies.user_id}`)
+        .then(function(pets) {
+          console.log(request.row)
+          res.render('editRequests', {
+            request: request.rows[0],
+            petInfo: pets.rows
+          })
 
+        })
     })
-  })
 })
 
 
@@ -83,18 +83,18 @@ router.post('/edit/:id', function(req, res, next) {
   knex.raw(`UPDATE requests SET (default )`)
 })
 
-router.post('/', function(req,res,next){
+router.post('/', function(req, res, next) {
   knex.raw(`INSERT INTO requests VALUES (default, ${req.body.poster}, ${req.body.pet}, '${req.body.start}', '${req.body.end}', '${req.body.notes}')`)
-  .then(function(data){
-  res.redirect('/requests')
-  })
+    .then(function(data) {
+      res.redirect('/requests')
+    })
 })
 
-router.post('/delete/:id', function(req,res,next) {
+router.post('/delete/:id', function(req, res, next) {
   knex.raw(`DELETE FROM requests WHERE id = ${req.params.id}`)
-  .then(function(data){
-    res.redirect('/requests')
-  })
+    .then(function(data) {
+      res.redirect('/requests')
+    })
 })
 
 module.exports = router;

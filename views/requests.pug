@@ -7,13 +7,24 @@ block content
 		each request in passinData
 			.request
 				.dog-info
-					.dog-picture
+					img(src=`${request.pic_url}`).dog-picture
 					.dog-text
 						.dog-name-and-rating
 							h2 #{request.pet_name}
 								span |
 								|
-								img(src='/image/5-stars.png')
+								if request.rating == 5
+									img.star(src="/image/5-stars.png")
+								else if request.rating == 4
+									img.star(src="/image/4-stars.png")
+								else if request.rating == 3
+									img.star(src="/image/3-stars.png")
+								else if request.rating == 2
+									img.star(src="/image/2-stars.png")
+								else if request.rating == 1
+									img.star(src="/image/1-star.png")
+								else
+									img.star(src="/image/0-stars.png")
 						.request-body
 							p.notes= request.notes
 							p.dates #{request.start_date} to #{request.end_date}
