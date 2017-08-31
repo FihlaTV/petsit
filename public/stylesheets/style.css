@@ -712,7 +712,7 @@ button.accept-button {
   padding: 20px;
 }
 
-.edit-new-form .left-form, .add-a-request input {
+.edit-new-form .left-form input, .add-a-request input {
   width: 100%;
   border: 1px solid lightgray;
   padding: 5px;
