@@ -28,7 +28,14 @@ button:hover {
   background: #E84C3D;
   cursor: pointer;
   color:white;
+}
 
+textarea {
+  resize:none;
+  outline:none;
+  font-size:20px;
+  padding:7px;
+  border-color: lightgray;
 }
 
 button.login {
@@ -108,7 +115,6 @@ button.create-user:hover a {
 }
 
 .requests .request {
-  /*display:flex;*/
   width:100%;
   min-height:275px;
   margin:10px 0;
@@ -225,6 +231,31 @@ button.create-user:hover a {
   font-weight: 100;
 }
 
+.checkmark {
+  text-align: right;
+  color: #61dd5f;
+  font-size: 40px;
+  margin-top: -40px;
+}
+
+.requests .add-request {
+  padding: 0 30px 30px 30px;
+}
+
+.requests .add-request button {
+  padding: 10px 20px;
+  border: 5px solid #E84C3D;
+  font-weight: 900;
+}
+
+.requests .add-request button a {
+  color: black;
+  font-size: 1.1em;
+}
+
+.requests .add-request button:hover a {
+  color: white;
+}
 
 
 
@@ -650,6 +681,87 @@ button.accept-button {
   margin:-10px 10px 15px 10px;
   font-weight:800;
 }
+
+
+/*ADD/EDIT USER/PET*/
+
+.add-user, .edit-user, .add-a-pet, .edit-a-pet {
+  padding: 40px;
+}
+
+.add-user h1, .edit-user h1, .add-a-user h1, .edit-a-pet h1, .add-a-request h1 {
+  font-size: 2.5em;
+  font-weight: 900;
+  padding-bottom: 30px;
+}
+
+.edit-new-form {
+  display: flex;
+  width: 100%;
+}
+
+.edit-new-form, .add-a-request p {
+  padding: 5px 0;
+  font-size: 20px;
+  font-weight: 800;
+  margin-top: 10px;
+}
+
+.edit-new-form .left-form {
+  width: 50%;
+  padding: 20px;
+}
+
+.edit-new-form .left-form, .add-a-request input {
+  width: 100%;
+  border: 1px solid lightgray;
+  padding: 5px;
+  font-size: 15px;
+}
+
+.edit-new-form .right-form {
+  width: 50%;
+  padding: 20px;
+}
+
+.edit-new-form textarea, .add-a-request textarea {
+  width: 100%;
+}
+
+.submit-edit {
+  text-align: right;
+}
+ 
+.submit-edit button {
+  padding: 10px 20px;
+  border: 5px solid #E84C3D;
+  margin:15px 10px;
+  font-weight:800;
+} 
+
+.add-a-request {
+  padding: 60px;
+}
+
+.add-a-request-form select {
+  background: none;
+  border: none;
+  font-size: 15px;
+  font-weight: 900;
+  outline: none;
+}
+
+.select {
+  width: 120px;
+  padding: 10px 20px;
+  border: 5px solid #E84C3D;
+  border-radius: 50px;
+}
+
+
+
+
+
 
 .elementToFadeInAndOut {
     opacity: 1;
