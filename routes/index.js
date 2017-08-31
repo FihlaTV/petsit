@@ -17,6 +17,7 @@ router.post('/login', function(req, res, next) {
   		bcrypt.compare(req.body.password, user.rows[0].password, (err, resp) => {
   			if (resp) {
   				res.cookie('user_id', user.rows[0].id);
+          res.cookie('username', user.rows[0].username);
 					res.redirect('/');
   			} else {
   				res.send('try again');
