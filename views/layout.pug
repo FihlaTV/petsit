@@ -20,8 +20,8 @@ html
           form(method="POST" action="/login")
             input(type="text" name="login")
             input(type="password" name="password")
-            button(type="submit") Login!
-          a(href="/users/add") Create a New User
+            button.login(type="submit") Login!
+          button.create-user: a(href="/users/add") Create a New User
         else
           h3 Welcome, #{username}
           a(href='/logout') Logout
