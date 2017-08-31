@@ -13,18 +13,22 @@ html
     .grid
       .header
         .logo
-          img(src="http://i.imgur.com/cUXtvAR.png")
+          a(href=`/`)
+            img(src="http://i.imgur.com/cUXtvAR.png")
 
         .links
-        if !username
-          form(method="POST" action="/login")
-            input(type="text" name="login")
-            input(type="password" name="password")
-            button.login(type="submit") Login!
-          button.create-user: a(href="/users/add") Create a New User
-        else
-          h3 Welcome, #{username}
-          a(href='/logout') Logout
+          if !username
+            form(method="POST" action="/login")
+              input.login(type="text" name="login" placeholder='Username')
+              input.login(type="password" name="password" placeholder='Password')
+              button.login(type="submit") Login!
+              |
+              button.login.create-user: a(href="/users/add") Create a New User
+          else
+            h3 Welcome, #{username}!
+            a(href=`/users/${cookie}`) View Profile &nbsp
+            |
+            a(href='/logout') | Logout
       .content
 
       .left-margin

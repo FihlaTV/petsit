@@ -2,40 +2,54 @@ extends layout
 
 block content
 
-  p= request.username
-  p= request.pet_name
-  p= request.notes
-  p= request.start_date
-  p= request.end_date
-  br
+  .show-request
+    .pet-picture
+    .poster-pet-name
+      h1= request.pet_name
+    .pet-average-rating
+      center
+        img(src='/image/5-stars.png')
+    .request-dates
+      center
+        p From #{request.start_date} to #{request.end_date}
+    .post-notes
+      h3= request.notes
+    br
+    .request-posted-by
+      .poster-name
+        p Posted by &nbsp;
+          |
+          a(href=`/users/${request.poster_id}`) #{request.username}
+      .view-poster-pet
+        button: a(href=`/pets/${request.pet_id}`) View Pet
 
-  if request.accepted_user_id != null
-    each person in user
-      if person.id == request.accepted_user_id
-        p= person.username
-  else
-    .comment-container
-      each comment in passinData
-        .comment
-          if cookie == request.poster_id
-            form(action="/requests/accept" method="POST")
-              input(type="hidden" value=`${comment.user_id}` name="accepted")
-              input(type="hidden" value=`${request.id}` name="request")
-              button(type="submit") Accept!
-          p= comment.username
-          p= comment.comment_body
+    if request.accepted_user_id != null
+      each person in user
+        if person.id == request.accepted_user_id
+          p= person.username
+    else
+      .comment-container
+        each comment in passinData
+          .comment
+            if cookie == request.poster_id
+              form(action="/requests/accept" method="POST")
+                input(type="hidden" value=`${comment.user_id}` name="accepted")
+                input(type="hidden" value=`${request.id}` name="request")
+                button(type="submit") Accept!
+            p= comment.username
+            p= comment.comment_body
 
-    if cookie
-        form(id="comment-box" method='POST' action='/comments')
-          input(id="comment-user" type='hidden' name='user_id' value=`${cookie}`)
-          input(id="comment-request" type='hidden' name='post_id' value=`${request.id}`)
-          textarea(id="comment-field" cols="60" rows="7" name="comment" placeholder="Add a comment")
-          br
-          button(id= "comment-button" type='submit') Add comment
+      if cookie
+          form(id="comment-box" method='POST' action='/comments')
+            input(id="comment-user" type='hidden' name='user_id' value=`${cookie}`)
+            input(id="comment-request" type='hidden' name='post_id' value=`${request.id}`)
+            textarea(id="comment-field" cols="60" rows="7" name="comment" placeholder="Add a comment")
+            br
+            button(id= "comment-button" type='submit') Add comment
 
 
-    if cookie == request.poster_id
-      form(method="post" action="/requests/delete/" + `${request.poster_id}`)
-        button(type="submit") Delete Request
-      form(method="get" action="/requests/edit/" + `${request.id}`)
-        button(type="submit") Edit Request
+      if cookie == request.poster_id
+        form(method="post" action="/requests/delete/" + `${request.poster_id}`)
+          button(type="submit") Delete Request
+        form(method="get" action="/requests/edit/" + `${request.id}`)
+          button(type="submit") Edit Request
