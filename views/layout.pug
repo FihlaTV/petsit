@@ -16,7 +16,7 @@ html
           img(src="http://i.imgur.com/cUXtvAR.png")
 
         .links
-        if !cookies.username
+        if !username
           form(method="POST" action="/login")
             input(type="text" name="login")
             input(type="password" name="password")
