@@ -96,7 +96,6 @@ button:hover {
 
 .dog-info .dog-picture {
   width:150px;
-  background-color:pink;
   height:150px;
 }
 
@@ -210,7 +209,6 @@ button:hover {
 .pet-page .pet-header p {
   color: #95989A;
 }
-<<<<<<< HEAD
 
 .pet-page .pet-header h1 {
   font-size: 2.5em;
@@ -265,8 +263,17 @@ button:hover {
   color: white;
 }
 
+.users-pets {
+  font-weight:900;
+  font-size:2.5em;
+  text-align:center;
+  padding-top:20px;
+}
+
 .pet-page hr {
-  margin:10px 0;
+  margin:20px 0;
+  width:100%;
+
 }
 
 .review-container h1 {
@@ -286,7 +293,6 @@ button:hover {
 
 .review-text-container {
   padding-top: 100px;
-  padding-right:100px;
 }
 
 .review-text-container .review span {
@@ -296,9 +302,212 @@ button:hover {
   font-size: 1.2em;
 }
 
+.review  {
+  width:100%;
+}
+
 .review p {
   color: #95989A;
   padding:20px 10px;
+}
+
+.leave-a-review h1 {
+  font-weight:700;
+}
+
+.leave-a-review textarea {
+  width:100%;
+}
+
+.leave-a-review button {
+  padding: 10px 20px;
+  border: 5px solid #E84C3D;
+  font-weight:bold;
+  float:right;
+  margin:40px;
+}
+
+.leave-a-review input[type='number'] {
+  font-size:20px;
+  width:100px;
+  padding:5px;
+  margin:15px 0;
+  margin-left:20px;
+  outline:none;
+}
+
+.leave-a-review textarea {
+  resize:none;
+  outline:none;
+  font-size:20px;
+  padding:7px;
+}
+
+/*USER PAGE*/
+
+.user-page {
+  padding:40px;
+}
+
+.user-page img {
+  width:100%;
+
+}
+
+.user-page .user-header {
+  text-align:center;
+  margin-bottom:50px;
+}
+
+.user-page .user-header h1 {
+  font-weight:900;
+  font-size:2.5em;
+}
+
+.user-page .user-header p {
+  color: #95989A;
+}
+
+.user-page .user-header .line {
+ width: 50px;
+ height: 4px;
+ background: black;
+ margin: 15px auto;
+}
+
+.user-info {
+  width:70%;
+  margin: 0 auto;
+}
+
+.user-info p {
+  color: #95989A;
+  margin-bottom: 15px;
+}
+
+.user-info hr {
+  width:100%;
+  margin:
+}
+
+.pet {
+  width:100%;
+}
+
+.pet .dog-info {
+  display:flex;
+  width:100%;
+}
+
+.pet .dog-info .dog-picture {
+  width:150px;
+  height:150px;
+  overflow:hidden;
+}
+
+.pet .dog-info .dog-picture img {
+  width:100%;
+}
+
+.pet .dog-info .dog-text {
+  width:85%;
+  padding: 0 20px;
+}
+
+.pet .view-pet {
+  width:100%;
+  text-align:right;
+}
+
+.view-pet button {
+  padding: 10px 20px;
+  border: 5px solid #E84C3D;
+  margin:15px 0;
+}
+
+.view-pet a {
+  text-decoration: none;
+  color: black;
+  font-weight: 800;
+  font-size: 1.1em;
+}
+
+.view-pet button:hover a {
+  color: white;
+}
+
+.dog-name-and-rating {
+  display: inline-block;
+  width: 100%;
+  margin-top: 0;
+}
+
+.dog-name-and-rating h2 {
+  width: 100%;
+  font-size: 2em;
+}
+
+.dog-name-and-rating span {
+  padding: 0 15px;
+  color: #B9B9B9;
+  font-weight: 100;
+  font-size: 1.2em;
+}
+
+.dog-name-and-rating img {
+  display: inline-block;
+  width: 150px;
+}
+
+.pet-body p {
+  padding:5px 0;
+  color: #95989A;
+}
+
+.pet-body .pet-bio {
+  color:black;
+}
+
+.user-page .pet {
+  width:100%;
+  min-height:275px;
+  margin:10px 0;
+  padding:40px;
+  position:relative;
+}
+
+.add-pet {
+  text-align:right;
+}
+
+.add-pet button {
+  padding: 10px 20px;
+  border: 5px solid #E84C3D;
+  margin:15px 30px;
+}
+
+.add-pet button a {
+  text-decoration: none;
+  color: black;
+  font-weight: 800;
+  font-size: 1.1em;
+}
+
+.add-pet button:hover a {
+  color: white;
+}
+
+.user-page .star {
+  width: 150px;
+}
+
+.leave-a-review h1 {
+  margin: 20px 0;
+}
+
+button.add-review {
+  font-size:0.8em;
+  font-weight: 900;
 }
 
 .elementToFadeInAndOut {
@@ -309,4 +518,3 @@ button:hover {
 @keyframes fade {
   0%,100% { opacity: 0 }
   50% { opacity: 1 }
-}
