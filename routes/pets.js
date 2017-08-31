@@ -25,7 +25,7 @@ router.post('/add', function(req, res, next){
 
 // show pet
 router.get('/:id', function(req, res, next) {
-  knex.raw(`select pets.*, users.username, users.location from pets join users on pets.owner_id = users.id WHERE pets.id = ${req.params.id}`)
+  knex.raw(`select pets.*, users.id as users_id, users.username, users.location from pets join users on pets.owner_id = users.id WHERE pets.id = ${req.params.id}`)
   .then(function(pets){
     knex.raw(`SELECT pet_reviews.*, users.username FROM pet_reviews JOIN users ON users.id = pet_reviews.poster_id WHERE pet_id = ${req.params.id}`)
     .then(function(reviews) {
