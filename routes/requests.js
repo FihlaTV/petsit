@@ -41,14 +41,17 @@ router.get('/:id', function(req, res, next) {
         .then(function(comments) {
           knex.raw(`SELECT * FROM users`)
             .then(function(users) {
-              console.log(data.rows[0])
-              res.render('showRequest', {
-                request: data.rows[0],
-                passinData: comments.rows,
-                cookie: req.cookies.user_id,
-                user: users.rows, username: req.cookies.username,
-                cookies: req.cookies.user_id
-              })
+              knex.raw(`select avg(rating) from pet_reviews where pet_id = ${data.rows[0].pet_id}`)
+                .then(function(ave) {
+                  res.render('showRequest', {
+                    request: data.rows[0],
+                    passinData: comments.rows,
+                    cookie: req.cookies.user_id,
+                    user: users.rows, username: req.cookies.username,
+                    cookies: req.cookies.user_id,
+                    starAve: Math.round(ave.rows[0].avg)
+                  })
+                })
             })
         })
     })

@@ -9,7 +9,18 @@ block content
       h1= request.pet_name
     .pet-average-rating
       center
-        img(src='/image/5-stars.png')
+        if starAve == 5
+          img.star(src="/image/5-stars.png")
+        else if starAve == 4
+          img.star(src="/image/4-stars.png")
+        else if starAve == 3
+          img.star(src="/image/3-stars.png")
+        else if starAve == 2
+          img.star(src="/image/2-stars.png")
+        else if starAve == 1
+          img.star(src="/image/1-star.png")
+        else
+          img.star(src="/image/0-stars.png")
     .request-dates
       center
         p From #{request.start_date} to #{request.end_date}
