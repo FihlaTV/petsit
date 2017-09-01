@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 
 // create new user
 router.get('/add', function(req, res, next) {
-  res.render('newUser, cookies: req.cookies.user_id')
+  res.render('newUser')
 })
 
 // edit page
@@ -24,9 +24,8 @@ router.get('/:id/edit', function(req,res, next){
 router.get('/:id', function(req, res, next){
   knex.raw(`SELECT * FROM users WHERE id = ${req.params.id}`)
   .then(function(user) {
-    knex.raw(`SELECT distinct pets.*, pet_reviews.rating FROM pets JOIN pet_reviews ON pets.id = pet_reviews.pet_id WHERE pets.owner_id = ${req.params.id}`)
+    knex.raw(`SELECT * FROM pets WHERE pets.owner_id = ${req.params.id}`)
       .then(function(pets) {
-        console.log(pets.rows)
         knex.raw(`SELECT user_reviews.*, users.username, users.id as user_id FROM user_reviews JOIN users ON users.id = user_reviews.poster_id WHERE user_id = ${req.params.id}`)
         .then(function(reviews) {
           knex.raw(`select avg(rating) from user_reviews where user_id = ${req.params.id}`)

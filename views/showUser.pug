@@ -1,8 +1,6 @@
 extends layout
 block content
   .user-page
-    if cookie == user.id
-      a(href=`/users/${user.id}/edit`) Edit my account
     .user-header
       h1= user.username
       div.line
@@ -30,20 +28,7 @@ block content
             .dog-text
               .dog-name-and-rating
                 h2 #{pet.pet_name}
-                  span |
-                  |
-                  if pet.rating == 5
-                    img.star(src="/image/5-stars.png")
-                  else if pet.rating == 4
-                    img.star(src="/image/4-stars.png")
-                  else if pet.rating == 3
-                    img.star(src="/image/3-stars.png")
-                  else if pet.rating == 2
-                    img.star(src="/image/2-stars.png")
-                  else if pet.rating == 1
-                    img.star(src="/image/1-star.png")
-                  else
-                    img.star(src="/image/0-stars.png")
+
               .pet-body
                 p= pet.species
                 p Age: #{pet.age}
