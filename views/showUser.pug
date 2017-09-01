@@ -78,7 +78,8 @@ block content
       .review-text-container
         each review in reviews
           .review
-            h2= review.username
+            h2
+              a(href=`/users/${review.user_id}`) #{review.username}
               span |
               |
               if review.rating == 5

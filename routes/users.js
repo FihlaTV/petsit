@@ -9,14 +9,14 @@ router.get('/', function(req, res, next) {
 
 // create new user
 router.get('/add', function(req, res, next) {
-  res.render('newUser')
+  res.render('newUser, cookies: req.cookies.user_id')
 })
 
 // edit page
 router.get('/:id/edit', function(req,res, next){
   knex.raw(`SELECT * FROM users WHERE id = ${req.params.id}`)
     .then(function(user) {
-      res.render('editUser', {user: user.rows[0]})
+      res.render('editUser', {user: user.rows[0], cookies: req.cookies.user_id})
     });
 })
 
@@ -24,15 +24,15 @@ router.get('/:id/edit', function(req,res, next){
 router.get('/:id', function(req, res, next){
   knex.raw(`SELECT * FROM users WHERE id = ${req.params.id}`)
   .then(function(user) {
-    knex.raw(`SELECT pets.*, pet_reviews.rating FROM pets JOIN pet_reviews ON pets.id = pet_reviews.pet_id WHERE pets.owner_id = ${req.params.id}`)
+    knex.raw(`SELECT distinct pets.*, pet_reviews.rating FROM pets JOIN pet_reviews ON pets.id = pet_reviews.pet_id WHERE pets.owner_id = ${req.params.id}`)
       .then(function(pets) {
         console.log(pets.rows)
-        knex.raw(`SELECT user_reviews.*, users.username FROM user_reviews JOIN users ON users.id = user_reviews.poster_id WHERE user_id = ${req.params.id}`)
+        knex.raw(`SELECT user_reviews.*, users.username, users.id as user_id FROM user_reviews JOIN users ON users.id = user_reviews.poster_id WHERE user_id = ${req.params.id}`)
         .then(function(reviews) {
           knex.raw(`select avg(rating) from user_reviews where user_id = ${req.params.id}`)
           .then(function(ave){
             res.cookie('stars', Math.round(ave.rows[0].avg) )
-            res.render('showUser', {user: user.rows[0], pets: pets.rows, reviews: reviews.rows, cookie: req.cookies.user_id, starAve: Math.round(ave.rows[0].avg), username: req.cookies.username})
+            res.render('showUser', {user: user.rows[0], pets: pets.rows, reviews: reviews.rows, cookie: req.cookies.user_id, starAve: Math.round(ave.rows[0].avg), username: req.cookies.username, cookies: req.cookies.user_id})
           })
         })
       })

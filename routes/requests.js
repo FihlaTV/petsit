@@ -22,7 +22,8 @@ router.get('/add', function(req, res, next) {
       .then(function(pets) {
         res.render('addRequest', {
           cookie: req.cookies.user_id,
-          petInfo: pets.rows, username: req.cookies.username
+          petInfo: pets.rows, username: req.cookies.username,
+          cookies: req.cookies.user_id
         })
       })
   } else {
@@ -45,7 +46,8 @@ router.get('/:id', function(req, res, next) {
                 request: data.rows[0],
                 passinData: comments.rows,
                 cookie: req.cookies.user_id,
-                user: users.rows, username: req.cookies.username
+                user: users.rows, username: req.cookies.username,
+                cookies: req.cookies.user_id
               })
             })
         })
@@ -72,7 +74,8 @@ router.get('/edit/:id', function(req, res, next) {
           console.log(request.row)
           res.render('editRequests', {
             request: request.rows[0],
-            petInfo: pets.rows, username: req.cookies.username
+            petInfo: pets.rows, username: req.cookies.username,
+            cookies: req.cookies.user_id
           })
 
         })

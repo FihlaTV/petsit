@@ -33,7 +33,7 @@ router.get('/:id', function(req, res, next) {
         .then(function(ave){
           knex.raw(`select * from pet_reviews where pet_id = ${req.params.id}`)
           .then(function(ratings){
-            res.render('petShow', {pet: pets.rows[0], cookie: req.cookies.user_id, reviews: reviews.rows, starAve: Math.round(ave.rows[0].avg), username: req.cookies.username, ratings:ratings.rows});
+            res.render('petShow', {pet: pets.rows[0], cookie: req.cookies.user_id, reviews: reviews.rows, starAve: Math.round(ave.rows[0].avg), username: req.cookies.username, ratings:ratings.rows, cookies: req.cookies.user_id});
           })
 
 
@@ -48,7 +48,8 @@ router.get('/:id', function(req, res, next) {
 router.get('/:id/edit', function(req, res, next) {
     knex.raw(`select * from pets WHERE pets.id = ${req.params.id}`)
     .then(function(pets){
-      res.render('petEdit', { pet:pets.rows[0], username: req.cookies.username })
+      res.render('petEdit', {
+        pet:pets.rows[0], username: req.cookies.username, cookies: req.cookies.user_id })
     })
 });
 
