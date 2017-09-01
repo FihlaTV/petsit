@@ -53,10 +53,23 @@ block content
         .review-text-container
           each comment in passinData
             .review
-              h2= comment.username
+              h2: a(href=`/users/${comment.user_id}`)= comment.username
                 span |
                 |
-                img.star(src="/image/5-stars.png")
+                each review in user_reviews
+                  if review.username == comment.username
+                    if review.rating == 5
+                      img.star(src="/image/5-stars.png")
+                    else if review.rating == 4
+                      img.star(src="/image/4-stars.png")
+                    else if review.rating == 3
+                      img.star(src="/image/3-stars.png")
+                    else if review.rating == 2
+                      img.star(src="/image/2-stars.png")
+                    else if review.rating == 1
+                      img.star(src="/image/1-star.png")
+                    else
+                      img.star(src="/image/0-stars.png")
               p= comment.comment_body
             .accept-offer
               if cookie == request.poster_id
