@@ -16,7 +16,7 @@ router.get('/add', function(req, res, next) {
 router.get('/:id/edit', function(req,res, next){
   knex.raw(`SELECT * FROM users WHERE id = ${req.params.id}`)
     .then(function(user) {
-      res.render('editUser', {user: user.rows[0], cookies: req.cookies.user_id})
+      res.render('editUser', {user: user.rows[0], cookies: req.cookies.user_id, username: req.cookies.username})
     });
 })
 

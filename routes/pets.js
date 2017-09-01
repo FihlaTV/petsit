@@ -6,7 +6,7 @@ var knex = require('../db/knex.js');
 // add yo pet
 router.get('/add', function(req, res, next) {
   if(req.cookies.user_id){
-      res.render('petAdd', { cookie: req.cookies.user_id });
+      res.render('petAdd', { cookie: req.cookies.user_id, username: req.cookies.username});
   } else {
     res.redirect('/')
   }
