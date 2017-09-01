@@ -42,15 +42,19 @@ router.get('/:id', function(req, res, next) {
           knex.raw(`SELECT * FROM users`)
             .then(function(users) {
               knex.raw(`select avg(rating) from pet_reviews where pet_id = ${data.rows[0].pet_id}`)
-                .then(function(ave) {
-                  res.render('showRequest', {
-                    request: data.rows[0],
-                    passinData: comments.rows,
-                    cookie: req.cookies.user_id,
-                    user: users.rows, username: req.cookies.username,
-                    cookies: req.cookies.user_id,
-                    starAve: Math.round(ave.rows[0].avg)
-                  })
+                .then(function(pet_ave) {
+                  knex.raw(`select user_reviews.*, users.username from user_reviews JOIN users ON users.id = user_reviews.user_id`)
+                    .then(function(user_reviews) {
+                      res.render('showRequest', {
+                        request: data.rows[0],
+                        passinData: comments.rows,
+                        cookie: req.cookies.user_id,
+                        user: users.rows, username: req.cookies.username,
+                        cookies: req.cookies.user_id,
+                        starAve: Math.round(pet_ave.rows[0].avg),
+                        user_reviews: user_reviews.rows
+                      })
+                    })
                 })
             })
         })
