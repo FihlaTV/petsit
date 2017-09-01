@@ -10,7 +10,7 @@ knex.raw(`SELECT requests.*, users.username, pets.pet_name, pets.id as pet_id, p
     res.render('requests', {
       username: req.cookies.username,
       passinData: requests.rows,
-      cookies: req.cookies.user_id,
+      cookies: req.cookies.user_id
     })
   })
 })

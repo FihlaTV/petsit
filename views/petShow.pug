@@ -16,9 +16,9 @@ block content
         h1 #{pet.species}
         h2 Bio:
         p Age: #{pet.age}
-        p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id.
+        p #{pet.bio}
         h2 Notes:
-        p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id.
+        p #{pet.notes}
     if cookie == pet.user_id
       .edit-button
         button: a(href=`/pets/${pet.id}/edit`) Edit
@@ -49,7 +49,8 @@ block content
       .review-text-container
         each review in reviews
           .review
-            h2= review.username
+            h2
+              a(href=`/users/${review.user_id}`) #{review.username}
               span |
               |
               if review.rating == 5
