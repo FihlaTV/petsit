@@ -5,7 +5,7 @@ var bcrypt = require('bcrypt');
 
 // Get all request
 router.get('/', function(req, res, next) {
-knex.raw(`SELECT requests.*, users.username, pets.pet_name, pet_reviews.rating, pets.pic_url FROM requests JOIN users ON requests.poster_id = users.id JOIN pets ON pets.id = requests.pet_id JOIN pet_reviews ON pet_reviews.id = pets.id;`)
+knex.raw(`SELECT requests.*, users.username, pets.pet_name, pets.id as pet_id, pet_reviews.rating, pets.pic_url FROM requests JOIN users ON requests.poster_id = users.id JOIN pets ON pets.id = requests.pet_id JOIN pet_reviews ON pet_reviews.id = pets.id;`)
   .then(function(requests) {
     res.render('requests', {
       username: req.cookies.username,

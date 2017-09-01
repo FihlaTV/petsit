@@ -13,7 +13,8 @@ block content
 					img(src=`${request.pic_url}`).dog-picture
 					.dog-text
 						.dog-name-and-rating
-							h2 #{request.pet_name}
+							h2
+								a(href=`/pets/${request.pet_id}`) #{request.pet_name}
 								span |
 								|
 								if request.rating == 5
