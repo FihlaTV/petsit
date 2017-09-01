@@ -586,10 +586,14 @@ button.add-review {
 }
 
 .show-request .pet-picture {
-  background: green;
+  overflow: hidden;
   width:200px;
   height:200px;
   margin: 20px auto;
+}
+
+.show-request .pet-picture img {
+  width:200px;
 }
 
 .poster-pet-name h1 {

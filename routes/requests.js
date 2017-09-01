@@ -35,7 +35,7 @@ router.get('/add', function(req, res, next) {
 
 // View requests
 router.get('/:id', function(req, res, next) {
-  knex.raw(`SELECT requests.*, users.username, pets.pet_name FROM requests JOIN users ON requests.poster_id = users.id JOIN pets ON pets.id = requests.pet_id WHERE requests.id = ${req.params.id}`)
+  knex.raw(`SELECT requests.*, users.username, pets.pet_name, pets.pic_url FROM requests JOIN users ON requests.poster_id = users.id JOIN pets ON pets.id = requests.pet_id WHERE requests.id = ${req.params.id}`)
     .then(function(data) {
       knex.raw(`SELECT request_comment.*, users.username FROM request_comment JOIN users ON users.id = request_comment.user_id WHERE request_comment.request_id = ${req.params.id}`)
         .then(function(comments) {
