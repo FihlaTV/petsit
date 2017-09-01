@@ -47,6 +47,10 @@ block content
           else
             img.star(src="/image/0-stars.png")
       .review-text-container
+        if reviews.length == 0
+          center
+            h3 There are no reviews for this pet :(
+            br
         each review in reviews
           .review
             h2
