@@ -6,7 +6,7 @@ module.exports = {
     client: 'pg',
     connection: {
       database: 'petsit',
-      host: 'https://petsit.herokuapp.com/'
+      host: 'localhost'
     },
     seeds: {
       directory: './seeds'
